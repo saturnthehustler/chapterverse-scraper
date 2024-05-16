@@ -1,14 +1,14 @@
 # ChapterVerse: Web Scraping & EPUB Conversion
 
-A Python project to scrape and create an EPUB from chapters of a novel.
+ChapterVerse is a Python project designed to scrape online novels and create EPUB files from their chapters. It provides concurrent scraping capabilities, error handling with retry logic, and the ability to add a cover image to the generated EPUB.
 
 ## Features
-- Concurrent scraping of chapters
-- Error handling with retry logic
-- Creation of an EPUB file with a cover image
+- Concurrent scraping of chapters to improve efficiency.
+- Error handling with automatic retry logic to handle transient network errors.
+- Creation of EPUB files with customizable cover images.
 
 ## Requirements
-- Python 3.7+
+- Python 3.7 or higher
 - `requests`
 - `beautifulsoup4`
 - `ebooklib`
@@ -16,21 +16,7 @@ A Python project to scrape and create an EPUB from chapters of a novel.
 - `concurrent.futures`
 
 ## Installation
-Clone the repository and install the required packages:
-```bash
-git clone https://github.com/yourusername/chapterverse-scraper.git
-cd chapterverse-scraper
-pip install -r requirements.txt
-
-## Usage
-python ChapterVerse.py
-
-## Configuration
-BASE_URL = 'https://www.bhqtech.com/an-understated-dominance-by-marina-vittori-'
-NUM_CHAPTERS = 2239
-CONCURRENT_REQUESTS = 5
-COVER_IMAGE_PATH = 'An Understated Dominance.png'
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/saturnthehustler/chapterverse-scraper.git
+   cd chapterverse-scraper
