@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Configuration variables
 NUM_CHAPTERS = 2239
 CONCURRENT_REQUESTS = 5
-COVER_IMAGE_PATH = 'An Understated Dominance.png'  
+COVER_IMAGE_PATH = 'An Understated Dominance.png'
 
 # Retry configuration
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
@@ -50,7 +50,7 @@ def scrape_all_chapters(base_urls, num_chapters):
                 chapter_urls.append((i, f"{base_url}{i}/"))
             else:
                 # Calculate the second part of the URL
-                second_part = (i - 2009) * 2 + 4019
+                second_part = 4018 + 2 * (i - 2010) + 1
                 chapter_urls.append((i, f"{base_url}{i}-{second_part}-{second_part + 1}/"))
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=CONCURRENT_REQUESTS) as executor:
@@ -68,6 +68,7 @@ def scrape_all_chapters(base_urls, num_chapters):
     # Sort chapters by chapter number
     chapters.sort(key=lambda x: x[0])
     return {f"Chapter {num}": content for num, content in chapters}
+
 
 # Function to create EPUB file
 def create_epub(chapters, title, author, cover_image_path):
@@ -119,7 +120,7 @@ def create_epub(chapters, title, author, cover_image_path):
     book.add_item(nav_css)
 
     # Write EPUB file with EPUB 2 version
-    epub.write_epub(f'{title}.epub', book, {})
+    epub.write_epub(f'{title}.epub', book, {'version': '2'})
     logging.info(f'{title}.epub created successfully.')
 
 # Main execution
